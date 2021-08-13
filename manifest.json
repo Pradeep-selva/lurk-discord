@@ -1,0 +1,9 @@
+{
+  "manifest_version": 2,
+  "name": "Lurk Discord",
+  "version": "1.0",
+  "background": {
+    "scripts": ["./worker.js"]
+  },
+  "permissions": ["tabs", "https://discord.com/*"]
+}
