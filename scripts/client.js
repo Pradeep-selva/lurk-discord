@@ -1,4 +1,6 @@
-console.log("[LURK DISCORD] Client injected");
+import { logger } from "../utils/index.js";
+
+logger.success("**Script injected**");
 var oldHref = document.location.href;
 
 const removeForm = () => {
@@ -10,10 +12,11 @@ removeForm();
 var bodyList = document.querySelector("body"),
   observer = new MutationObserver((mutations) => {
     mutations.forEach(() => {
-      if (oldHref != document.location.href) {
-        console.log("[LURK DISCORD]: New Url encountered");
+      const currentURL = document.location.href;
+      if (oldHref != currentURL) {
+        logger.success(`New URL encountered -- ${currentURL}`);
 
-        oldHref = document.location.href;
+        oldHref = currentURL;
         removeForm();
       }
     });

@@ -3,7 +3,8 @@
   "name": "Lurk Discord",
   "version": "1.0",
   "background": {
-    "scripts": ["./worker.js"]
+    "page": "./pages/background.html"
   },
-  "permissions": ["tabs", "https://discord.com/*"]
+  "permissions": ["tabs", "https://discord.com/*"],
+  "web_accessible_resources": ["./utils/*", "./scripts/*"]
 }
