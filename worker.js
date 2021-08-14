@@ -1,7 +1,9 @@
 chrome.tabs.onActivated.addListener(({ tabId }) => {
   chrome.tabs.get(tabId, ({ url }) => {
     if (url.startsWith("https://discord.com/")) {
-      console.log("Yes, discord");
+      chrome.tabs.executeScript(null, { file: "./client.js" }, () =>
+        console.log("[LURK DISCORD] Injected Client")
+      );
     }
   });
 });
