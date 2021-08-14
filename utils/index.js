@@ -1,8 +1,7 @@
-export const removeForm = () => {
-  let form = null;
-
-  form = document.querySelector("form");
-  form?.remove();
+export const formOps = {
+  query: () => document.querySelector("form"),
+  remove: (form = null) =>
+    !!form ? form.remove() : logger.error("Could not find form")
 };
 
 export const logger = {
