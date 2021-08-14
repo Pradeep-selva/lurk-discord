@@ -1,6 +1,8 @@
 export const removeForm = () => {
-  const form = document.querySelector("form");
-  form.remove();
+  let form = null;
+
+  form = document.querySelector("form");
+  form?.remove();
 };
 
 export const logger = {

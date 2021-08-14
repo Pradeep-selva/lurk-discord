@@ -5,6 +5,12 @@
   "background": {
     "page": "./pages/background.html"
   },
+  "content_scripts": [
+    {
+      "js": ["./scripts/content.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
   "permissions": ["tabs", "https://discord.com/*"],
-  "web_accessible_resources": ["./utils/*", "./scripts/*"]
+  "web_accessible_resources": ["utils/*", "scripts/*"]
 }
