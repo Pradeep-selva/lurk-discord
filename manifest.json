@@ -8,9 +8,12 @@
   "content_scripts": [
     {
       "js": ["./scripts/content.js"],
-      "matches": ["<all_urls>"]
+      "matches": ["https://discord.com/channels/*"]
     }
   ],
+  "action": {
+    "default_popup": "./pages/popup.html"
+  },
   "permissions": ["tabs", "https://discord.com/*"],
   "web_accessible_resources": ["utils/*", "scripts/*"]
 }
