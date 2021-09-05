@@ -11,7 +11,7 @@
       "matches": ["https://discord.com/channels/*"]
     }
   ],
-  "action": {
+  "browser_action": {
     "default_popup": "./pages/popup.html"
   },
   "permissions": ["tabs", "https://discord.com/*"],

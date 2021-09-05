@@ -9,3 +9,8 @@ const head =
   document.getElementsByTagName("head")[0] ||
   document.documentElement;
 head.insertBefore(script, head.lastChild);
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  console.log(`[LURK DISCORD] Req: ${request} . Sender: ${sender}`);
+  sendResponse("RANDOM");
+});
