@@ -24,3 +24,8 @@
   width: 3rem;
   height: 3rem;
 }
+
+.footer {
+  color: var(--primary-text);
+  opacity: 0.9;
+}
