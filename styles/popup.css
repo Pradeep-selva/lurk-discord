@@ -1,16 +1,16 @@
 html {
-  --black-bg: #1f2024;
-  --primary-text: rgb(216, 216, 216);
+  --bg-primary: rgb(65, 78, 236);
+  --primary-text: rgb(233, 227, 227);
 }
 
 body {
-  min-width: 200px;
-  background-color: var(--black-bg);
+  min-width: 250px;
+  background-color: var(--bg-primary);
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 50px 0;
+  padding-top: 5rem;
 }
 
 #heading {
@@ -30,4 +30,22 @@ body {
 #btn-accessory {
   width: 1.2rem;
   margin-right: 0.5rem;
+}
+
+#logo {
+  width: 6rem;
+  height: 6rem;
+}
+
+.footer {
+  color: var(--primary-text);
+  opacity: 0.9;
+}
+
+.space-mt {
+  margin-top: 3rem;
+}
+
+.text-bold {
+  font-weight: bold;
 }

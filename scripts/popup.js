@@ -3,7 +3,7 @@ const Assets = {
   closedEye: "../assets/eye-shut.png"
 };
 
-const DEV = true;
+const DEV = false;
 
 const SESSION_STORAGE_STATE_KEY = "isLurkingDiscord";
 const BUTTON_TITLES = {
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   createBtnAccessory(checkIfLurkingOrNot() ? Assets.closedEye : Assets.openEye);
   LurkState.setLurking(LurkState.getCurState());
 
-  logData(LurkState.getCurState());
+  DEV && logData(LurkState.getCurState());
 
   let triggerButton = document.querySelector("#btn-message");
   let triggerButtonText = document.querySelector("#btn-message-text");
