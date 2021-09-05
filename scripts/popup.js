@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let triggerButton = document.querySelector("#btn-message");
   let triggerButtonText = document.querySelector("#btn-message-text");
+  let refreshButton = document.querySelector("#refresh");
 
   triggerButton.addEventListener("click", () => {
     if (!LurkState.getCurState()) {
@@ -88,6 +89,12 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
       chrome.tabs.sendMessage(tabs[0].id, "loaded");
     });
+  });
+
+  refreshButton.addEventListener("click", () => {
+    LurkState.setLurking(false);
+    triggerButtonText.innerText = BUTTON_TITLES.start;
+    createBtnAccessory();
   });
 });
 
