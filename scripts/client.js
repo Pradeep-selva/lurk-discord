@@ -8,7 +8,7 @@ var oldHref = document.location.href;
 var isLurking = false;
 
 const startLurking = (mustExecute = false) => {
-  isLurking = true;
+  if (!isLurking) return;
 
   const form = formOps.query();
   const currentURL = document.location.href;
@@ -40,6 +40,7 @@ window.onload = () => {
   triggerButton.addEventListener("click", () => {
     if (!isLurking) {
       logger.success(`lurking`);
+      isLurking = true;
       startLurking(true);
 
       var bodyList = document.querySelector("body"),
