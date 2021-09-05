@@ -6,16 +6,14 @@ const triggerButton = document.querySelector("#trigger");
 
 var oldHref = document.location.href;
 var isLurking = false;
-var firstLoad = true;
 
-const startLurking = () => {
+const startLurking = (mustExecute = false) => {
   isLurking = true;
 
   const form = formOps.query();
   const currentURL = document.location.href;
 
-  if (firstLoad) {
-    firstLoad = false;
+  if (mustExecute) {
     formOps.remove(form);
     logger.success("Started Lurking!");
   }
@@ -30,20 +28,19 @@ const startLurking = () => {
 };
 
 const stopLurking = () => {
+  isLurking = false;
+
   const form = formOps.query();
   formOps.makeVisible(form);
-
-  isLurking = false;
 
   logger.success("Stopped Lurking!");
 };
 
 window.onload = () => {
   triggerButton.addEventListener("click", () => {
-    logger.success(`isLurking: ${isLurking}`);
-
     if (!isLurking) {
-      startLurking();
+      logger.success(`lurking`);
+      startLurking(true);
 
       var bodyList = document.querySelector("body"),
         observer = new MutationObserver(() => {
@@ -57,6 +54,7 @@ window.onload = () => {
 
       observer.observe(bodyList, config);
     } else {
+      logger.success("not lurking");
       stopLurking();
     }
   });
