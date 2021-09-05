@@ -52,7 +52,18 @@ const checkIfLurkingOrNot = () => {
   }
 };
 
+const checkIfOnDiscordChannels = () => {
+  chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+    if (!tabs[0].url.startsWith("https://discord.com/channels/")) {
+      const contentContainer = document.querySelector("#content-container");
+      const STYLE_ID = "info-text";
+      contentContainer.innerHTML = `<h2 id="${STYLE_ID}">You must be on a channel of discord.com to use this extension.</h2>`;
+    }
+  });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
+  checkIfOnDiscordChannels();
   createBtnAccessory(checkIfLurkingOrNot() ? Assets.closedEye : Assets.openEye);
   LurkState.setLurking(LurkState.getCurState());
 
