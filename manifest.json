@@ -2,6 +2,9 @@
   "manifest_version": 2,
   "name": "Lurk Discord",
   "version": "1.0",
+  "icons": {
+    "48": "./assets/lurk-discord-logo.png"
+  },
   "background": {
     "page": "./pages/background.html"
   },
