@@ -7,6 +7,10 @@ const triggerButton = document.querySelector("#trigger");
 var oldHref = document.location.href;
 var isLurking = false;
 
+/**
+ * sets lurking state to true and executes every time a new channel is encountered
+ * @param {*} mustExecute - To execute the functionality unconditionally
+ */
 const startLurking = (mustExecute = false) => {
   if (!isLurking) return;
 
@@ -27,6 +31,9 @@ const startLurking = (mustExecute = false) => {
   }
 };
 
+/**
+ * sets lurking state to false
+ */
 const stopLurking = () => {
   isLurking = false;
 
@@ -43,6 +50,7 @@ window.onload = () => {
       isLurking = true;
       startLurking(true);
 
+      // start lurking on any new discord page while in lurk mode
       var bodyList = document.querySelector("body"),
         observer = new MutationObserver(() => {
           startLurking();

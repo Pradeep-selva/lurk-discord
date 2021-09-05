@@ -1,16 +1,16 @@
+// constants
 const Assets = {
   openEye: "../assets/eye-open.png",
   closedEye: "../assets/eye-shut.png"
 };
-
 const DEV = false;
-
 const SESSION_STORAGE_STATE_KEY = "isLurkingDiscord";
 const BUTTON_TITLES = {
   stop: "stop lurking",
   start: "start lurking"
 };
 
+//Lurking State service, to set/get keys
 const LurkState = {
   setLurking: (isLurking) =>
     window.localStorage.setItem(SESSION_STORAGE_STATE_KEY, `${isLurking}`),
@@ -20,6 +20,22 @@ const LurkState = {
       : false
 };
 
+/**
+ * data logging in dev environment
+ * @param {*} data - data to log
+ */
+const logData = (data) => {
+  if (DEV) {
+    const div = document.createElement("div");
+    div.innerText = data;
+    document.body.appendChild(div);
+  }
+};
+
+/**
+ * destroy previous accessory and replace with new one created
+ * @param {*} assetSource - Asset to append as button accessory
+ */
 const createBtnAccessory = (assetSource = Assets.openEye) => {
   try {
     const accessoryPlaceholder = document.querySelector(
@@ -38,10 +54,14 @@ const createBtnAccessory = (assetSource = Assets.openEye) => {
 
     accessoryPlaceholder.appendChild(btnAccessory);
   } catch (e) {
-    DEV && console.log("[LURK DISCORD] Error: ", e);
+    logData(`[LURK DISCORD] Error: ${e}`);
   }
 };
 
+/**
+ * check if the user is in lurking mode and change ui accordingly
+ * @returns whether user is lurking or not
+ */
 const checkIfLurkingOrNot = () => {
   if (LurkState.getCurState()) {
     let triggerButtonText = document.querySelector("#btn-message-text");
@@ -52,6 +72,9 @@ const checkIfLurkingOrNot = () => {
   }
 };
 
+/**
+ * change ui to display info message if not on discord.com/channels
+ */
 const checkIfOnDiscordChannels = () => {
   chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
     if (!tabs[0].url.startsWith("https://discord.com/channels/")) {
@@ -67,23 +90,24 @@ document.addEventListener("DOMContentLoaded", () => {
   createBtnAccessory(checkIfLurkingOrNot() ? Assets.closedEye : Assets.openEye);
   LurkState.setLurking(LurkState.getCurState());
 
-  DEV && logData(LurkState.getCurState());
+  logData(LurkState.getCurState());
 
   let triggerButton = document.querySelector("#btn-message");
   let triggerButtonText = document.querySelector("#btn-message-text");
   let refreshButton = document.querySelector("#refresh");
 
+  // handle mode switching
   triggerButton.addEventListener("click", () => {
     if (!LurkState.getCurState()) {
       triggerButtonText.innerText = BUTTON_TITLES.stop;
       createBtnAccessory(Assets.closedEye);
       LurkState.setLurking(true);
-      DEV && logData(LurkState.getCurState());
+      logData(LurkState.getCurState());
     } else {
       triggerButtonText.innerText = BUTTON_TITLES.start;
       createBtnAccessory(Assets.openEye);
       LurkState.setLurking(false);
-      DEV && logData(LurkState.getCurState());
+      logData(LurkState.getCurState());
     }
 
     chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
@@ -91,15 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  //handle state refresh
   refreshButton.addEventListener("click", () => {
     LurkState.setLurking(false);
     triggerButtonText.innerText = BUTTON_TITLES.start;
     createBtnAccessory();
   });
 });
-
-const logData = (data) => {
-  const div = document.createElement("div");
-  div.innerText = data;
-  document.body.appendChild(div);
-};

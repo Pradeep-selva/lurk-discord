@@ -1,7 +1,8 @@
 {
   "manifest_version": 2,
   "name": "Lurk Discord",
-  "version": "1.0",
+  "description": "Just wanna lurk chats on discord, without actually interacting, but you end up typing by mistake, everyone finds you out and you get labelled a lurker? Well, you dont need to look further. Install this extension, and just switch to lurk mode!\n This is completely open sourced: https://github.com/Pradeep-selva/lurk-discord",
+  "version": "1.0.0",
   "icons": {
     "48": "./assets/lurk-discord-logo.png"
   },
