@@ -38,7 +38,20 @@ body {
   height: 6rem;
 }
 
-.footer {
+#footer {
   color: var(--primary-text);
   opacity: 0.9;
+}
+
+#refresh {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+#info {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

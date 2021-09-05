@@ -6,22 +6,34 @@
     <link rel="stylesheet" href="../styles/utils.css" />
   </head>
   <body class="center-all flex-col">
-    <img id="logo" alt="logo" src="../assets/lurk-discord-logo.png" />
-    <div class="center-all">
-      <h1 id="heading">Lurk Discord</h1>
-      <div class="tooltip">
-        <img id="refresh" alt="refresh-icon" src="../assets/refresh.png" />
-        <span class="tooltiptext">Tooltip text</span>
-      </div>
+    <!-- tooltips section -->
+    <div id="info" class="tooltip">
+      <img class="icon" alt="info-icon" src="../assets/info.png" />
+      <span class="tooltip-text tooltip-right">
+        In case of errors, please refresh your page or state :(
+      </span>
     </div>
+    <div id="refresh" class="tooltip">
+      <img class="icon" alt="refresh-icon" src="../assets/refresh.png" />
+      <span class="tooltip-text tooltip-left">Reset your lurking state</span>
+    </div>
+
+    <!-- header section -->
+    <img id="logo" alt="logo" src="../assets/lurk-discord-logo.png" />
+    <h1 id="heading">Lurk Discord</h1>
+
+    <!-- main section -- shows functionality/info -->
     <div id="content-container" class="center-all flex-col">
       <button id="btn-message" class="center-all">
         <span id="btn-accessory-placeholder"></span>
         <b id="btn-message-text">start lurking</b>
       </button>
     </div>
+
+    <!-- footer -->
     <a
-      class="footer space-mt"
+      id="footer"
+      class="space-mt"
       href="https://github.com/Pradeep-selva/lurk-discord"
       rel="noreferrer noopener"
       target="_blank"
@@ -29,6 +41,8 @@
       view source code
     </a>
     <p class="footer text-bold">2021 &copy; Pradeep Selva</p>
+
+    <!-- scripts -->
     <script src="../scripts/popup.js"></script>
   </body>
 </html>

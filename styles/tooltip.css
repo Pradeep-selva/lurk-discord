@@ -4,7 +4,7 @@
   border-bottom: 1px dotted black;
 }
 
-.tooltip .tooltiptext {
+.tooltip .tooltip-text {
   visibility: hidden;
   background-color: black;
   color: #fff;
@@ -12,15 +12,21 @@
   padding: 5px 0;
   border-radius: 6px;
   width: 120px;
-  top: 100%;
-  left: 50%;
-  margin-left: -60px;
-  margin-top: 10px;
 
   position: absolute;
   z-index: 1;
 }
 
-.tooltip:hover .tooltiptext {
+.tooltip-left {
+  left: -250%;
+  top: 10px;
+}
+
+.tooltip-right {
+  right: -250%;
+  top: 10px;
+}
+
+.tooltip:hover .tooltip-text {
   visibility: visible;
 }
