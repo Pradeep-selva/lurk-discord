@@ -18,3 +18,16 @@ body {
   font-weight: bold;
   font-size: 2rem;
 }
+
+#btn-message {
+  border-radius: 5px;
+  padding: 0.5rem 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#btn-accessory {
+  width: 1.2rem;
+  margin-right: 0.5rem;
+}
