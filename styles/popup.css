@@ -1,0 +1,20 @@
+html {
+  --black-bg: #1f2024;
+  --primary-text: rgb(216, 216, 216);
+}
+
+body {
+  min-width: 200px;
+  background-color: var(--black-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px 0;
+}
+
+#heading {
+  color: var(--primary-text);
+  font-weight: bold;
+  font-size: 2rem;
+}
