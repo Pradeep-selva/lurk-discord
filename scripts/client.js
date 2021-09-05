@@ -6,24 +6,27 @@ const triggerButton = document.querySelector("#trigger");
 
 var oldHref = document.location.href;
 var isLurking = false;
+var firstLoad = true;
 
 const startLurking = () => {
   isLurking = true;
 
-  const currentURL = document.location.href;
   const form = formOps.query();
+  const currentURL = document.location.href;
 
-  if (oldHref != currentURL) {
+  if (firstLoad) {
+    firstLoad = false;
+    formOps.remove(form);
+    logger.success("Started Lurking!");
+  }
+
+  if (currentURL !== oldHref) {
     logger.success(`New URL encountered -- ${currentURL}`);
 
     oldHref = currentURL;
     formOps.remove(form);
+    logger.success("Started Lurking!");
   }
-
-  if (!!form) {
-    formOps.remove(form);
-  }
-  logger.success("Started Lurking!");
 };
 
 const stopLurking = () => {
@@ -38,12 +41,13 @@ const stopLurking = () => {
 window.onload = () => {
   triggerButton.addEventListener("click", () => {
     logger.success(`isLurking: ${isLurking}`);
+
     if (!isLurking) {
       startLurking();
 
       var bodyList = document.querySelector("body"),
-        observer = new MutationObserver((mutations) => {
-          mutations.forEach(() => startLurking());
+        observer = new MutationObserver(() => {
+          startLurking();
         });
 
       var config = {
