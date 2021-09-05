@@ -2,12 +2,20 @@
 <html>
   <head>
     <link rel="stylesheet" href="../styles/popup.css" />
+    <link rel="stylesheet" href="../styles/tooltip.css" />
+    <link rel="stylesheet" href="../styles/utils.css" />
   </head>
-  <body>
-    <img id="logo" alt="logo" src="../assets//lurk-discord-logo.png" />
-    <h1 id="heading">Lurk Discord</h1>
-    <div id="content-container">
-      <button id="btn-message">
+  <body class="center-all flex-col">
+    <img id="logo" alt="logo" src="../assets/lurk-discord-logo.png" />
+    <div class="center-all">
+      <h1 id="heading">Lurk Discord</h1>
+      <div class="tooltip">
+        <img id="refresh" alt="refresh-icon" src="../assets/refresh.png" />
+        <span class="tooltiptext">Tooltip text</span>
+      </div>
+    </div>
+    <div id="content-container" class="center-all flex-col">
+      <button id="btn-message" class="center-all">
         <span id="btn-accessory-placeholder"></span>
         <b id="btn-message-text">start lurking</b>
       </button>

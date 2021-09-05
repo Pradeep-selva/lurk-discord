@@ -6,10 +6,6 @@ html {
 body {
   min-width: 250px;
   background-color: var(--bg-primary);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   padding-top: 5rem;
 }
 
@@ -17,13 +13,6 @@ body {
   color: var(--primary-text);
   font-weight: bold;
   font-size: 2rem;
-}
-
-#content-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 }
 
 #info-text {
@@ -37,9 +26,6 @@ body {
 #btn-message {
   border-radius: 5px;
   padding: 0.5rem 0.7rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #btn-accessory {
@@ -55,12 +41,4 @@ body {
 .footer {
   color: var(--primary-text);
   opacity: 0.9;
-}
-
-.space-mt {
-  margin-top: 3rem;
-}
-
-.text-bold {
-  font-weight: bold;
 }

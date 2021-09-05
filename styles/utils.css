@@ -1,0 +1,21 @@
+.space-mt {
+  margin-top: 3rem;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.center-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-col {
+  flex-direction: column;
+}
