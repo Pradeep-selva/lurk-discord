@@ -3,6 +3,16 @@ const Assets = {
   closedEye: "../assets/eye-shut.png"
 };
 
+const SESSION_STORAGE_STATE_KEY = "isLurkingDiscord";
+const LurkState = {
+  setLurking: (isLurking) =>
+    window.localStorage.setItem(SESSION_STORAGE_STATE_KEY, `${isLurking}`),
+  getCurState: () =>
+    window.localStorage.getItem(SESSION_STORAGE_STATE_KEY) === "true"
+      ? true
+      : false
+};
+
 const createBtnAccessory = (assetSource = Assets.openEye) => {
   try {
     const accessoryPlaceholder = document.querySelector(
@@ -25,22 +35,36 @@ const createBtnAccessory = (assetSource = Assets.openEye) => {
   }
 };
 
+const checkIfLurkingOrNot = () => {
+  if (LurkState.getCurState()) {
+    let triggerButtonText = document.querySelector("#btn-message-text");
+    triggerButtonText.innerText = "stop lurking";
+    return true;
+  } else {
+    return false;
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
-  createBtnAccessory();
-  let isLurking = false;
+  createBtnAccessory(checkIfLurkingOrNot() ? Assets.closedEye : Assets.openEye);
+  LurkState.setLurking(LurkState.getCurState());
+
+  logData(LurkState.getCurState());
 
   let triggerButton = document.querySelector("#btn-message");
   let triggerButtonText = document.querySelector("#btn-message-text");
 
   triggerButton.addEventListener("click", () => {
-    if (!isLurking) {
+    if (!LurkState.getCurState()) {
       triggerButtonText.innerText = "stop lurking";
       createBtnAccessory(Assets.closedEye);
-      isLurking = true;
+      LurkState.setLurking(true);
+      logData(LurkState.getCurState());
     } else {
       triggerButtonText.innerText = "start lurking";
       createBtnAccessory(Assets.openEye);
-      isLurking = false;
+      LurkState.setLurking(false);
+      logData(LurkState.getCurState());
     }
 
     chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
@@ -48,3 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+const logData = (data) => {
+  const div = document.createElement("div");
+  div.innerText = data;
+  document.body.appendChild(div);
+};
