@@ -3,6 +3,10 @@ export const formOps = {
   remove: (form = null) => {
     if (!!form) form.style.visibility = "hidden";
     else logger.error("Could not find form");
+  },
+  makeVisible: (form = null) => {
+    if (!!form) form.style.visibility = "visible";
+    else logger.error("Could not find form");
   }
 };
 
